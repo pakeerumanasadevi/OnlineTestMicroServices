@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="questions")
@@ -27,6 +28,7 @@ public class Questions {
 	private String optionFour;
 	@Column(length=30)
 	private String rightAnswer;
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@ManyToOne
 	@JoinColumn(name="testId")
 	private TestOnline test;
@@ -36,28 +38,6 @@ public class Questions {
 	private String choosenAnswer;
 	@Column(length=30)
 	private int marksScored;
-	public Questions() {
-		super();
-	
-	}
-
-	
-	public Questions(int questionId, String questionTitle, String optionOne, String optionTwo, String optionThree,
-			String optionFour, String rightAnswer, TestOnline test, int questionMarks, String choosenAnswer,
-			int marksScored) {
-		super();
-		this.questionId = questionId;
-		this.questionTitle = questionTitle;
-		this.optionOne = optionOne;
-		this.optionTwo = optionTwo;
-		this.optionThree = optionThree;
-		this.optionFour = optionFour;
-		this.rightAnswer = rightAnswer;
-		this.test = test;
-		this.questionMarks = questionMarks;
-		this.choosenAnswer = choosenAnswer;
-		this.marksScored = marksScored;
-	}
 	public int getQuestionId() {
 		return questionId;
 	}
@@ -100,7 +80,7 @@ public class Questions {
 	public void setRightAnswer(String rightAnswer) {
 		this.rightAnswer = rightAnswer;
 	}
-	@JsonIgnore
+	//@JsonIgnore
 	public TestOnline getTest() {
 		return test;
 	}
@@ -125,6 +105,24 @@ public class Questions {
 	public void setMarksScored(int marksScored) {
 		this.marksScored = marksScored;
 	}
+	public Questions(int questionId, String questionTitle, String optionOne, String optionTwo, String optionThree,
+			String optionFour, String rightAnswer, TestOnline test, int questionMarks, String choosenAnswer,
+			int marksScored) {
+		super();
+		this.questionId = questionId;
+		this.questionTitle = questionTitle;
+		this.optionOne = optionOne;
+		this.optionTwo = optionTwo;
+		this.optionThree = optionThree;
+		this.optionFour = optionFour;
+		this.rightAnswer = rightAnswer;
+		this.test = test;
+		this.questionMarks = questionMarks;
+		this.choosenAnswer = choosenAnswer;
+		this.marksScored = marksScored;
+	}
+	public Questions() {}
+	
 
 	
 }

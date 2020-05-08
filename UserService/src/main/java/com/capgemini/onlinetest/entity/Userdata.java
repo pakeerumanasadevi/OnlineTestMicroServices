@@ -34,24 +34,6 @@ public class Userdata {
 	private String userEmail;
 	@NotBlank(message="usertype cannot be empty")
 	private String userType;
-
-	public Userdata() {
-		super();
-	}
-	
-	public Userdata(int userid, String username, TestOnline usertest,
-			@Size(min = 3, max = 20, message = "password must be minimum 8 characters") String userPassword,
-			@Min(4) long userPhoneno, @Email(message = "enter proper email id") String userEmail,
-			@NotBlank(message = "usertype cannot be empty") String userType) {
-		super();
-		this.userid = userid;
-		this.username = username;
-		this.usertest = usertest;
-		this.userPassword = userPassword;
-		this.userPhoneno = userPhoneno;
-		this.userEmail = userEmail;
-		this.userType = userType;
-	}
 	
 	
 	public String getUserType() {

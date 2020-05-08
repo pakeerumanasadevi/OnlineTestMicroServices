@@ -13,7 +13,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="userr")
@@ -36,24 +36,7 @@ public class Userdata {
 	@NotBlank(message="usertype cannot be empty")
 	private String userType;
 	
-
-	public Userdata() {
-		super();
-	}
 	
-	public Userdata(int userid, String username, TestOnline usertest,
-			@Size(min = 3, max = 20, message = "password must be minimum 8 characters") String userPassword,
-			@Min(4) long userPhoneno, @Email(message = "enter proper email id") String userEmail,
-			@NotBlank(message = "usertype cannot be empty") String userType) {
-		super();
-		this.userid = userid;
-		this.username = username;
-		this.usertest = usertest;
-		this.userPassword = userPassword;
-		this.userPhoneno = userPhoneno;
-		this.userEmail = userEmail;
-		this.userType = userType;
-	}
 	public String getUserType() {
 		return userType;
 	}
@@ -97,6 +80,23 @@ public class Userdata {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
+	public Userdata(int userid, String username, TestOnline usertest,
+			@Size(min = 3, max = 20, message = "password must be minimum 8 characters") String userPassword,
+			@Min(4) long userPhoneno, @Email(message = "enter proper email id") String userEmail,
+			 String userType) {
+		super();
+		this.userid = userid;
+		this.username = username;
+		this.usertest = usertest;
+		this.userPassword = userPassword;
+		this.userPhoneno = userPhoneno;
+		this.userEmail = userEmail;
+		this.userType = userType;
+	}
+	public Userdata() {
+		
+	}
+	
 	
 }
 

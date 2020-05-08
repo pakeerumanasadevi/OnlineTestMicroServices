@@ -1,6 +1,6 @@
 package com.capgemini.onlinetest.entity;
 
-import java.time.LocalDate;
+
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -22,23 +22,7 @@ public class TestOnline {
 	private Set<Questions> testQuestions;
 	private int testTotalMarks;
 	private int testMarksScored;
-	//@Column(name="testDate",nullable=false)
-	//private LocalDate testDate;
-
-	public TestOnline() {
-		super();
-	}
 	
-	public TestOnline(int testId, String testTitle, Set<Questions> testQuestions, int testTotalMarks,
-			int testMarksScored) {
-		super();
-		this.testId = testId;
-		this.testTitle = testTitle;
-		this.testQuestions = testQuestions;
-		this.testTotalMarks = testTotalMarks;
-		this.testMarksScored = testMarksScored;
-		//this.testDate = testDate;
-	}
 
 	public int getTestId() {
 		return testId;
@@ -71,13 +55,7 @@ public class TestOnline {
 	public void setTestMarksScored(int testMarksScored) {
 		this.testMarksScored = testMarksScored;
 	}
-	/*public LocalDate getTestDate() {
-		return testDate;
-	}
-	public void setTestDate(LocalDate testDate) {
-		this.testDate = testDate;
-	}	
-*/
+	
 	
 }
 

@@ -37,28 +37,6 @@ public class Questions {
 	private String choosenAnswer;
 	@Column(length=30)
 	private int marksScored;
-	public Questions() {
-		super();
-	
-	}
-
-	public Questions(int questionId, String questionTitle, String optionOne, String optionTwo, String optionThree,
-			String optionFour, String rightAnswer, TestOnline test, int questionMarks, String choosenAnswer,
-			int marksScored) {
-		super();
-		this.questionId = questionId;
-		this.questionTitle = questionTitle;
-		this.optionOne = optionOne;
-		this.optionTwo = optionTwo;
-		this.optionThree = optionThree;
-		this.optionFour = optionFour;
-		this.rightAnswer = rightAnswer;
-		this.test = test;
-		this.questionMarks = questionMarks;
-		this.choosenAnswer = choosenAnswer;
-		this.marksScored = marksScored;
-	}
-
 	public int getQuestionId() {
 		return questionId;
 	}

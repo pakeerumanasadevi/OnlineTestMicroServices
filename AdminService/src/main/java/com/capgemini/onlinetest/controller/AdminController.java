@@ -37,7 +37,11 @@ public class AdminController {
 	@Autowired
 	AdminService adser;
 
-	// Add user
+	/**
+	 * add the user
+	 * @param u
+	 * @return
+	 */
 	@PostMapping("/addUser")
 	public ResponseEntity<String> addUser(@RequestBody Userdata u) {
 		Userdata e =adser.addUser(u);

@@ -1,5 +1,6 @@
 package com.capgemini.onlinetest.entity;
 
+
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -7,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 @Entity
@@ -17,25 +20,11 @@ public class TestOnline {
 	private int testId;
 	@Column(length=50)
 	private String testTitle;
+	@JsonBackReference
 	@OneToMany(mappedBy="test")
 	private Set<Questions> testQuestions;
 	private int testTotalMarks;
 	private int testMarksScored;
-
-	public TestOnline() {
-		super();
-	}
-	
-	public TestOnline(int testId, String testTitle, Set<Questions> testQuestions, int testTotalMarks,
-			int testMarksScored) {
-		super();
-		this.testId = testId;
-		this.testTitle = testTitle;
-		this.testQuestions = testQuestions;
-		this.testTotalMarks = testTotalMarks;
-		this.testMarksScored = testMarksScored;
-		
-	}
 
 	public int getTestId() {
 		return testId;
@@ -68,8 +57,19 @@ public class TestOnline {
 	public void setTestMarksScored(int testMarksScored) {
 		this.testMarksScored = testMarksScored;
 	}
+	public TestOnline(int testId, String testTitle, Set<Questions> testQuestions, int testTotalMarks,
+			int testMarksScored) {
+		super();
+		this.testId = testId;
+		this.testTitle = testTitle;
+		this.testQuestions = testQuestions;
+		this.testTotalMarks = testTotalMarks;
+		this.testMarksScored = testMarksScored;
+	}
+	public TestOnline() {
+		
+	}
 	
-
 	
 }
 
