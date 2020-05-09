@@ -68,7 +68,7 @@ public class AdminServiceImp implements AdminService{
 		}
 		return urep.save(u);
 	}
-	//
+	//Test
 	
 	@Override
 	public TestOnline save(TestOnline t) {
@@ -103,7 +103,8 @@ public class AdminServiceImp implements AdminService{
 	public List<TestOnline> getAll() {
 		return trep.findAll();
 	}
-	//
+	
+	//Questions
 	
 	@Override
 	public Questions save(Questions q) {

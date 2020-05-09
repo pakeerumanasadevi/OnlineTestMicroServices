@@ -13,13 +13,11 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="userr")
 public class Userdata {
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
 	private int userid;
 	@Column(length=20)
 	private String username;
@@ -99,4 +97,3 @@ public class Userdata {
 	
 	
 }
-

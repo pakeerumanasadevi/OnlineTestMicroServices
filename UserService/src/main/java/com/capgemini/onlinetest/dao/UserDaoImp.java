@@ -40,5 +40,4 @@ public class UserDaoImp implements UserDao {
     }
 	return "no";
 	}
-		
 }

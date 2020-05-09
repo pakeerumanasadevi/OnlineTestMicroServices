@@ -20,12 +20,8 @@ import com.capgemini.onlinetest.entity.Questions;
 import com.capgemini.onlinetest.entity.TestOnline;
 import com.capgemini.onlinetest.entity.Userdata;
 import com.capgemini.onlinetest.exceptions.IdNotFoundException;
-import com.capgemini.onlinetest.exceptions.UserNotFoundException;
+
 import com.capgemini.onlinetest.service.AdminService;
-
-
-
-
 
 
 @RestController
@@ -37,11 +33,8 @@ public class AdminController {
 	@Autowired
 	AdminService adser;
 
-	/**
-	 * add the user
-	 * @param u
-	 * @return
-	 */
+	
+	//User Sign up
 	@PostMapping("/addUser")
 	public ResponseEntity<String> addUser(@RequestBody Userdata u) {
 		Userdata e =adser.addUser(u);
@@ -53,8 +46,7 @@ public class AdminController {
 	}
 	
 
-	
-	// Get all users
+	//Display the list of users
 	@GetMapping("/GetAllUsers")
 	public ResponseEntity<List<Userdata>> getAllUsers() {
 		List<Userdata> userlist = adser.getAllUsers();
@@ -73,11 +65,11 @@ public class AdminController {
 		}
 	}
 	
-	// Delete User
+	
+	//Delete User
 	@DeleteMapping("/DeleteUser/{userId}")
 	public ResponseEntity<String> deleteUser(@PathVariable("userId") int userId) {
 		Userdata e = adser.deleteUser(userId);
-		System.out.println("controller delete");
 		if (e == null) {
 			throw new IdNotFoundException("Delete Operation Unsuccessful,Provided Id does not exist");
 		} else {
@@ -86,13 +78,13 @@ public class AdminController {
 	}
 	
 	
-	//To validate Login 
+	//Login 
 	@PutMapping("/Loginuser")
 	public String loginUser(@RequestBody Userdata u)
 	{
-
 		 return adser.loginUser(u);
 	}
+	
 	
 	//add questions
 	@PostMapping("/question")
@@ -100,30 +92,39 @@ public class AdminController {
 		return adser.save(q);
 	}
 	
+	
 	//get all questions
 	@GetMapping("/getq")
 	public List<Questions> findQ(){
 		return adser.getAllQ();
 	}
 	
+	
 	//update question
 	@PutMapping("/uptques")
-	public ResponseEntity<Questions> updateQu(@RequestBody Questions q){
+	public ResponseEntity<String> updateQu(@RequestBody Questions q){
 		Questions q1=adser.updateQuestion(q);
-		return ResponseEntity.ok().body(q1);
+		if (q1 == null) {
+			throw new IdNotFoundException("Update Operation Unsuccessful,Provided Id does not exist");
+		} else {
+			return new ResponseEntity<String>("Question updated successfully", new HttpHeaders(), HttpStatus.OK);
+		}
 	}
+	
 	
 	//delete question
 	@DeleteMapping("/delq/{qid}")
-	public ResponseEntity<Questions> deleteQ(@PathVariable(value="qid")int qid)
+	public ResponseEntity<String> deleteQ(@PathVariable(value="qid")int qid)
 	{
 		Questions q=adser.findOneQ(qid);
-		if(q==null) {
-			return ResponseEntity.notFound().build();
+		if (q == null) {
+			throw new IdNotFoundException("Delete Operation Unsuccessful,Provided Id does not exist");
+		} else {
+			adser.deleteQ(q);
+			return new ResponseEntity<String>("Question deleted successfully", new HttpHeaders(), HttpStatus.OK);
 		}
-		adser.deleteQ(q);
-		return ResponseEntity.ok().build();
 	}
+	
 	
 	//add test
 	@PostMapping("/test")
@@ -131,30 +132,37 @@ public class AdminController {
 		return adser.save(t);
 	}
 	
+	
 	//get all test
 	@GetMapping("/gett")
 	public List<TestOnline> findT() {
 		return adser.getAll();
 	}
 	
+	
 	//update test
 	@PutMapping("/upttest")
-	public ResponseEntity<TestOnline> updateT(@RequestBody TestOnline t){
+	public ResponseEntity<String> updateT(@RequestBody TestOnline t){
 		TestOnline t1=adser.updateTest(t);
-		return ResponseEntity.ok().body(t1);
+		if (t1 == null) {
+			throw new IdNotFoundException("Update Operation Unsuccessful,Provided Id does not exist");
+		} else {
+			return new ResponseEntity<String>("Test updated successfully", new HttpHeaders(), HttpStatus.OK);
+		}
 	}
+	
 	
 	//delete test
      @DeleteMapping("/delt/{testid}")
-	public ResponseEntity<TestOnline> deleteT(@PathVariable(value="testid")int testid)
-
+	public ResponseEntity<String> deleteT(@PathVariable(value="testid")int testid)
 	{
 		TestOnline t=adser.findOne(testid); 
-		if(t==null) {
-			return ResponseEntity.notFound().build();
+		if (t == null) {
+			throw new IdNotFoundException("Delete Operation Unsuccessful,Provided Id does not exist");
+		} else {
+			adser.deleteT(t);
+			return new ResponseEntity<String>("Test deleted successfully", new HttpHeaders(), HttpStatus.OK);
 		}
-		adser.deleteT(t);
-		return ResponseEntity.ok().build();
 		
 	}
      
@@ -167,6 +175,7 @@ public class AdminController {
 		return adser.assignTestQ(questionId, testId);
 	}
 	
+	
 	//assign test to user
 	@PutMapping("/user/{userid}/{testId}")
 	public Userdata assignTest(@PathVariable(value="userid")int userid,
@@ -176,12 +185,8 @@ public class AdminController {
 	
 
 	@ExceptionHandler(IdNotFoundException.class)
-	public ResponseEntity<String> userNotFound(IdNotFoundException e) {
+	public ResponseEntity<String> IdException(IdNotFoundException e) {
 		return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
 	}
-	@ExceptionHandler(UserNotFoundException.class)
-	public ResponseEntity<String> userNotFound(UserNotFoundException e){
-		return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
-	}
+	
 }
-

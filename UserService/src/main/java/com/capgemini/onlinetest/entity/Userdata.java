@@ -18,7 +18,6 @@ import javax.validation.constraints.Size;
 @Table(name="userr")
 public class Userdata {
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
 	private int userid;
 	@Column(length=20)
 	private String username;
@@ -81,5 +80,3 @@ public class Userdata {
 	}
 	
 }
-
-

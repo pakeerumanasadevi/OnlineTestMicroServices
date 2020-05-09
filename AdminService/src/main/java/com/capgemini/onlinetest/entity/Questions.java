@@ -7,14 +7,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="questions")
 public class Questions {
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
 	private int questionId;
 	@Column(length=100)
 	private String questionTitle;

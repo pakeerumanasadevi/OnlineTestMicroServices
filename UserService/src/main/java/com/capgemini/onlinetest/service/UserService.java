@@ -10,8 +10,8 @@ import com.capgemini.onlinetest.entity.Userdata;
 
 public interface UserService {
 
-	String loginUser(Userdata u);//didnt write test case
-	public TestOnline get(String name);//didnt write test case
+	String loginUser(Userdata u);
+	public TestOnline get(String name);
 	int calculateTotalTestMarks(int tid);
 	TestOnline findOne(int testid);
 	int calculateMarks(Questions q);
@@ -19,6 +19,7 @@ public interface UserService {
 	public List<Questions> getUQuestions(int tid);
 	Userdata userProfileSer(String name);
 	Userdata userProfileLatPageSer(int tid);
+	
+	
 
 }
-

@@ -48,7 +48,7 @@ return dao.loginUser(u);
 public TestOnline get(String name) {
 	return urep.get(name);
 }
-/////
+
 
 @Override
 public TestOnline findOne(int testid) {
@@ -111,14 +111,16 @@ public int calculateMarks(Questions q) {
 
 @Override
 public Userdata userProfileSer(String name) {
-	// TODO Auto-generated method stub
+
 	return urep.userProfile(name);
 }
 
 @Override
 public Userdata userProfileLatPageSer(int tid) {
-	// TODO Auto-generated method stub
+
 	return urep.userProfileLastPage(tid);
 }
+
+
 
 }

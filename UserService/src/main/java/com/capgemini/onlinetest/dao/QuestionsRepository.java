@@ -18,10 +18,8 @@ public interface QuestionsRepository extends JpaRepository<Questions,Integer>{
 	
 	@Query("select q from TestOnline t,Questions q where q.test=t.testId and t.testId=:testId")
 	public List<Questions> getUserQuestion(@Param("testId")int testId);
-	/////////////////////
 	
-	@Query("select q.rightAnswer from TestOnline t,Questions q where q.test=t.testId and t.testId=:testId")
-	public int[] getArrayOfRight(@Param("testId")int testId);
+	
 	
 	@Modifying	
 	@Query("update Questions q set q.choosenAnswer=:choosenAnswer WHERE q.questionId=:questionId")

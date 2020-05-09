@@ -14,7 +14,6 @@ import javax.persistence.Table;
 @Table(name="test")
 public class TestOnline {
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
 	private int testId;
 	@Column(length=50)
 	private String testTitle;
@@ -58,4 +57,3 @@ public class TestOnline {
 	
 	
 }
-
