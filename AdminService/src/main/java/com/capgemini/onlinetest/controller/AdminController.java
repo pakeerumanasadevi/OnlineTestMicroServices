@@ -1,6 +1,9 @@
 package com.capgemini.onlinetest.controller;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -157,8 +160,9 @@ public class AdminController {
 	public ResponseEntity<String> deleteT(@PathVariable(value="testid")int testid)
 	{
 		TestOnline t=adser.findOne(testid); 
-		if (t == null) {
-			throw new IdNotFoundException("Delete Operation Unsuccessful,Provided Id does not exist");
+    	Optional<TestOnline> t1=adser.findById(testid); 
+		if(!t1.isPresent()){
+			throw new IdNotFoundException("Delete Operation Unsuccessful");
 		} else {
 			adser.deleteT(t);
 			return new ResponseEntity<String>("Test deleted successfully", new HttpHeaders(), HttpStatus.OK);
@@ -169,18 +173,32 @@ public class AdminController {
 	
 	//add test to question to test
 	@PutMapping("/test/{testId}/{questionId}")
-	public Questions assignQuestion(@PathVariable(value="testId")int testId,
+	public ResponseEntity<String> assignQuestion(@PathVariable(value="testId")int testId,
 			@PathVariable(value="questionId")int questionId){
+		Optional<TestOnline> t=adser.findById(testId); 
+		if (!t.isPresent()) {
+			throw new IdNotFoundException("Provided Id does not exist");
+		}
 		
-		return adser.assignTestQ(questionId, testId);
+		else {
+			adser.assignTestQ(questionId, testId);
+			return new ResponseEntity<String>("Assigned successfully", new HttpHeaders(), HttpStatus.OK);
+		}
 	}
 	
 	
 	//assign test to user
 	@PutMapping("/user/{userid}/{testId}")
-	public Userdata assignTest(@PathVariable(value="userid")int userid,
+	public ResponseEntity<String> assignTest(@PathVariable(value="userid")int userid,
 			@PathVariable(value="testId")int testId) {
-		return adser.assignTest(userid,testId);
+		Optional<TestOnline> t=adser.findById(testId); 
+		if (!t.isPresent()) {
+			throw new IdNotFoundException("Provided Id does not exist");
+		}
+		else {
+			adser.assignTest(userid,testId);
+			return new ResponseEntity<String>("Assigned successfully", new HttpHeaders(), HttpStatus.OK);
+		}
 	}
 	
 
@@ -188,5 +206,6 @@ public class AdminController {
 	public ResponseEntity<String> IdException(IdNotFoundException e) {
 		return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
 	}
+	
 	
 }

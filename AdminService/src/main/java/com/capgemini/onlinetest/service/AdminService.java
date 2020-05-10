@@ -30,4 +30,6 @@ public interface AdminService {
 	public List<Questions> getAllQ();
 	public Questions updateQuestion(Questions q);
 	public Questions assignTestQ(int qid,int tid);
+	Optional<TestOnline> findById(int tid);
+	Optional<Questions> findByIdQ(int qid);
 }

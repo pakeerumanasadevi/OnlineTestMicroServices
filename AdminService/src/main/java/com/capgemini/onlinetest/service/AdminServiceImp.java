@@ -104,6 +104,12 @@ public class AdminServiceImp implements AdminService{
 		return trep.findAll();
 	}
 	
+	
+	@Override
+	public Optional<TestOnline> findById(int tid) {
+		return trep.findById(tid);
+	}
+	
 	//Questions
 	
 	@Override
@@ -158,6 +164,12 @@ public class AdminServiceImp implements AdminService{
 		}
 		
 		return qrep.save(q);
+	}
+	
+	@Override
+	public Optional<Questions> findByIdQ(int qid) {
+		return qrep.findById(qid);
+		
 	}
 
 
