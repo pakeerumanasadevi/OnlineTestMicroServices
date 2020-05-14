@@ -25,7 +25,7 @@ public class Userdata {
 	@OneToOne(targetEntity=TestOnline.class,cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="testid", referencedColumnName="testId") 
 	private TestOnline usertest;
-	@Size(min=3, max=20, message="password must be minimum 8 characters")
+	@Size(min=3, max=20, message="password must be minimum 4 characters")
 	private String userPassword;
 	@Min(value=4)
 	private long userPhoneno;

@@ -1,6 +1,6 @@
 package com.capgemini.onlinetest.controller;
 
-import java.sql.SQLIntegrityConstraintViolationException;
+
 import java.util.List;
 import java.util.Optional;
 

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.capgemini.onlinetest.dao.QuestionsRepository;
 import com.capgemini.onlinetest.dao.TestRepository;
-import com.capgemini.onlinetest.dao.UserDaoImp;
 
 import com.capgemini.onlinetest.dao.UserRepository;
 import com.capgemini.onlinetest.entity.Questions;
@@ -25,8 +24,7 @@ import com.capgemini.onlinetest.entity.Userdata;
 @Transactional
 public class UserServiceImp implements UserService
 {
-@Autowired
-UserDaoImp dao;
+
 @Autowired
 TestRepository trep;
 @Autowired
@@ -34,15 +32,6 @@ UserRepository urep;
 @Autowired
 QuestionsRepository qrep;
 
-
-
-@Override
-public String loginUser(Userdata u)
-{
-return dao.loginUser(u);
-}
-
-/////////////////////////////////////////////////
 
 @Override
 public TestOnline get(String name) {
@@ -120,6 +109,8 @@ public Userdata userProfileLatPageSer(int tid) {
 
 	return urep.userProfileLastPage(tid);
 }
+
+
 
 
 

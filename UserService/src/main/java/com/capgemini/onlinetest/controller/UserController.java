@@ -85,12 +85,12 @@ public class UserController {
 	@GetMapping("/getProfile/{username}")
 	public Userdata getProfile(@PathVariable(value="username") String username)
 	{
-		  TestOnline t1=user.get(username);
-		  if(t1==null) {
+		  Userdata u=user.userProfileSer(username);
+		  if(u==null) {
 				throw new UserNotFoundException("Invalid Username");
 			}
 		  else {
-			  return user.userProfileSer(username);
+			  return u;
 		  }
 		  
 	}

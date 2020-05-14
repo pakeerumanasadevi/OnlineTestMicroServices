@@ -10,7 +10,6 @@ import com.capgemini.onlinetest.entity.Userdata;
 
 public interface UserService {
 
-	String loginUser(Userdata u);
 	public TestOnline get(String name);
 	int calculateTotalTestMarks(int tid);
 	TestOnline findOne(int testid);
